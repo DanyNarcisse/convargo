@@ -145,8 +145,11 @@ const actors = [{
   }]
 }];
 
+
 function EuroVolume()
 {
+    var priceTab = [];
+    var index = 0;
     for(var i=0;i < deliveries.length; i++ )
         {
             for(var j =0; j< truckers.length; j++)
@@ -172,13 +175,46 @@ function EuroVolume()
                                     priceTemp = Price - (Price * 0.5);
                                 }
                             else priceTemp = Price;
-                            console.log(priceTemp);
+                            priceTab[index] = priceTemp;
+                            index ++;
                         }
                 }
         }
+    return priceTab;
+}
+
+function printTab(tableau)
+{
+    for(var i = 0; i<tableau.length; i++)
+        {
+            console.log(tableau[i]);
+        }
+}
+
+function Comission(euroVolumeTab)
+{
+    var euroVolumeTab = EuroVolume();
+    var insurance ;
+    for(var i=0;i < deliveries.length; i++ )
+        {
+            insurance = euroVolumeTab[i] * 0.5;
+            console.log(insurance);
+        }    
+    
+    var theTreasury;
+    for(var i=0;i < deliveries.length; i++ )
+        {
+            if(deliveries[i].distance > 500)
+                {
+                    theTreasury = deliveries[i].distance/500
+                    console.log(theTreasury);
+                }
+        }
+
 }
 
 console.log(truckers);
 console.log(deliveries);
 console.log(actors);
-EuroVolume();
+printTab(EuroVolume());
+Comission();
