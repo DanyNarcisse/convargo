@@ -154,7 +154,25 @@ function EuroVolume()
                     if(deliveries[i].truckerId == truckers[j].id)
                         {
                             var Price = deliveries[i].distance * truckers[j].pricePerKm + deliveries[i].volume * truckers[j].pricePerVolume;
-                            console.log(Price);
+                            
+                            var priceTemp;
+                            
+                            if(deliveries[i].volume > 5 && deliveries[i].volume <= 10)
+                                {
+                                    priceTemp = Price - (Price * 0.1);
+                                }
+                            
+                            else if(deliveries[i].volume > 10 && deliveries[i].volume <=25)
+                                {
+                                    priceTemp = Price - (Price * 0.3);
+                                }
+                            
+                            else if(deliveries[i].volume > 25)
+                                {
+                                    priceTemp = Price - (Price * 0.5);
+                                }
+                            else priceTemp = Price;
+                            console.log(priceTemp);
                         }
                 }
         }
