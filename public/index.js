@@ -145,6 +145,22 @@ const actors = [{
   }]
 }];
 
+function EuroVolume()
+{
+    for(var i=0;i < deliveries.length; i++ )
+        {
+            for(var j =0; j< truckers.length; j++)
+                {
+                    if(deliveries[i].truckerId == truckers[j].id)
+                        {
+                            var Price = deliveries[i].distance * truckers[j].pricePerKm + deliveries[i].volume * truckers[j].pricePerVolume;
+                            console.log(Price);
+                        }
+                }
+        }
+}
+
 console.log(truckers);
 console.log(deliveries);
 console.log(actors);
+EuroVolume();
