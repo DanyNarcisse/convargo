@@ -191,30 +191,56 @@ function printTab(tableau)
         }
 }
 
-function Comission(euroVolumeTab)
+//Function for insruance company's money
+function insuranceMoney(euroVolumeTab)
 {
+    var insuranceMoneyTab = [];
     var euroVolumeTab = EuroVolume();
-    var insurance ;
     for(var i=0;i < deliveries.length; i++ )
         {
-            insurance = euroVolumeTab[i] * 0.5;
-            console.log(insurance);
-        }    
-    
-    var theTreasury;
+            insuranceMoneyTab[i] = euroVolumeTab[i] * 0.5;
+        }
+    return insuranceMoneyTab;
+}
+
+//Function the treasury's money
+function treasuryMoney(euroVolumeTab)
+{
+    var treasuryTab = [];
+    var euroVolumeTab = EuroVolume();
     for(var i=0;i < deliveries.length; i++ )
         {
             if(deliveries[i].distance > 500)
                 {
-                    theTreasury = deliveries[i].distance/500
-                    console.log(theTreasury);
+                    treasuryTab[i] = deliveries[i].distance/500
                 }
+            else treasuryTab[i] = 0;
         }
+    return treasuryTab;
+}
 
+//Function convargo's money
+function convargoMoney(euroVolumeTab)
+{
+    var convargoTab = [];
+    var euroVolumeTab = EuroVolume();
+    var insuranceTab = insuranceMoney(EuroVolume());
+    var treasuryTab = treasuryMoney(EuroVolume());
+    
+    for(var i=0;i < euroVolumeTab.length; i++ )
+        {
+            convargoTab[i] = euroVolumeTab[i] - (treasuryTab[i] + insuranceTab[i]);
+        }
+    return convargoTab;
 }
 
 console.log(truckers);
 console.log(deliveries);
 console.log(actors);
+
 printTab(EuroVolume());
-Comission();
+
+printTab(insuranceMoney());
+printTab(treasuryMoney());
+printTab(convargoMoney());
+
