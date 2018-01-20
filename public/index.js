@@ -234,6 +234,21 @@ function convargoMoney(euroVolumeTab)
     return convargoTab;
 }
 
+//Function deductible
+function deductible()
+{
+    var deductibleTab = [];
+    for (var i =0; i< deliveries.length; i++)
+        {
+            deductibleTab[i] = 1000;
+            if(deliveries[i].options.deductibleReduction == true)
+                {
+                    deductibleTab[i] = 200 + deliveries[i].volume;
+                }
+        }
+    return deductibleTab;
+}
+
 console.log(truckers);
 console.log(deliveries);
 console.log(actors);
@@ -245,3 +260,6 @@ console.log("Comissions: insurance, treasury, convargo:");
 printTab(insuranceMoney());
 printTab(treasuryMoney());
 printTab(convargoMoney());
+
+console.log("Price with deductible:");
+printTab(deductible());
