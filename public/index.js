@@ -198,7 +198,7 @@ function insuranceMoney(euroVolumeTab)
     var euroVolumeTab = EuroVolume();
     for(var i=0;i < deliveries.length; i++ )
         {
-            insuranceMoneyTab[i] = euroVolumeTab[i] * 0.5;
+            insuranceMoneyTab[i] = (euroVolumeTab[i] * 0.3) * 0.5;
         }
     return insuranceMoneyTab;
 }
@@ -229,7 +229,7 @@ function convargoMoney(euroVolumeTab)
     
     for(var i=0;i < euroVolumeTab.length; i++ )
         {
-            convargoTab[i] = euroVolumeTab[i] - (treasuryTab[i] + insuranceTab[i]);
+            convargoTab[i] = (euroVolumeTab[i]* 0.3) - (treasuryTab[i] + insuranceTab[i]);
         }
     return convargoTab;
 }
@@ -238,9 +238,10 @@ console.log(truckers);
 console.log(deliveries);
 console.log(actors);
 
+console.log("EuroVolume then EuroVolume with decreased prices:");
 printTab(EuroVolume());
 
+console.log("Comissions: insurance, treasury, convargo:");
 printTab(insuranceMoney());
 printTab(treasuryMoney());
 printTab(convargoMoney());
-
