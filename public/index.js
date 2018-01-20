@@ -249,17 +249,79 @@ function deductible()
     return deductibleTab;
 }
 
+//Function shipperDebit
+function shipperDebit()
+{
+    var euroVolumeTab = EuroVolume();
+    var deductibleTab = deductible();
+    var shipperDebitTab = [];
+    for(var i = 0; i<euroVolumeTab.length; i++)
+        {
+            shipperDebitTab[i] = euroVolumeTab[i] + deductibleTab[i];
+        }
+    return shipperDebitTab;
+}
+
+//Function trucker's Debit
+function truckersCredit()
+{
+    var euroVolumeTab = EuroVolume()
+    var truckersDebitTab = [];
+    
+    for (var i = 0; i < deliveries.length; i++)
+        {
+            truckersDebitTab[i] = euroVolumeTab[i] * 0.7;
+        }
+    return truckersDebitTab;
+}
+
+//Function convargo's credit
+function convargoCredit()
+{
+    var convargoMoneyTab = convargoMoney();
+    var deductibleTab = deductible();
+    var convargoCreditTab = [];
+    
+    for(var i = 0; i < deliveries.length; i++)
+        {
+            convargoCreditTab[i] = convargoMoneyTab[i] + deductibleTab[i];
+        }
+    return convargoCreditTab;
+}
+
 console.log(truckers);
 console.log(deliveries);
 console.log(actors);
 
+//--------------------- STEP 1 & 2 ------------------------
+
 console.log("EuroVolume then EuroVolume with decreased prices:");
 printTab(EuroVolume());
+
+//--------------------- STEP 3 ------------------------
 
 console.log("Comissions: insurance, treasury, convargo:");
 printTab(insuranceMoney());
 printTab(treasuryMoney());
 printTab(convargoMoney());
 
-console.log("Price with deductible:");
+//--------------------- STEP 4 ------------------------
+
+console.log("Price of deductibles:");
 printTab(deductible());
+
+//--------------------- STEP 5 ------------------------
+console.log("Shipper debit:");
+printTab(shipperDebit());
+
+console.log("Trucker's debit:");
+printTab(truckersCredit());
+
+console.log("Insurance comission:");
+printTab(insuranceMoney());
+
+console.log("Treasury comission:");
+printTab(treasuryMoney());
+
+console.log("Convargo comission");
+printTab(convargoCredit());
